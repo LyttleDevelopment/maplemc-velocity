@@ -11,7 +11,7 @@ COPY nginx.conf /etc/nginx/nginx.conf.template
 EXPOSE 25565
 
 # Healthcheck for the Minecraft port
-HEALTHCHECK --interval=30s --timeout=3s \
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
   CMD nc -z localhost 25565 || exit 1
 
 # At runtime, substitute environment variables into the NGINX config
